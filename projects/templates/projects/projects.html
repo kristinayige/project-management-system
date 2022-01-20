@@ -1,5 +1,7 @@
 {% extends 'core/base.html' %}
 {% load static %}
+<link href="{% static 'core/css/nicepage.css' %}" rel="stylesheet">
+<link href="{% static 'core/css/Explore-Projects.css' %}" rel="stylesheet">
 
 
 {% block breadcrumb %}
@@ -8,7 +10,54 @@
 <li class="breadcrumb-item active">Views</li>
 {% endblock breadcrumb%}
 {% block content %}
-<div class="col-md-12">
+
+<section class="u-align-left u-clearfix u-grey-5 u-section-1" id="carousel_7c2a">
+    <div class="u-clearfix u-sheet u-sheet-1">
+        <!-- <h2 class="u-custom-font u-font-montserrat u-text u-text-1">YourDAO Bounty Board</h2> -->
+        <div class="u-expanded-width-xs u-list u-list-1">
+            <div class="u-repeater u-repeater-1">
+                <div
+                    class="u-align-left u-container-style u-custom-item u-list-item u-repeater-item u-white u-list-item-1">
+                    <div class="u-container-layout u-similar-container u-container-layout-1">
+                        <div
+                            class="u-expanded-height-lg u-expanded-height-xl u-expanded-height-xs u-palette-3-base u-shape u-shape-rectangle u-shape-1">
+                        </div>
+                        <h2 class="u-text u-text-default u-text-2">Create bounty board for DAO++</h2>
+                        <h2 class="u-text u-text-default u-text-3">0.5 ETH</h2>
+                        <a href="https://bountyboard.bankless.community/"
+                            class="u-border-2 u-border-palette-2-base u-btn u-btn-round u-button-style u-hover-palette-2-base u-none u-radius-6 u-text-body-color u-text-hover-white u-btn-1">LEARN
+                            MORE</a>
+                    </div>
+                </div>
+                <div class="u-align-left u-container-style u-list-item u-repeater-item u-white u-list-item-2">
+                    <div class="u-container-layout u-similar-container u-container-layout-2">
+                        <div
+                            class="u-expanded-height-lg u-expanded-height-xl u-expanded-height-xs u-palette-3-base u-shape u-shape-rectangle u-shape-2">
+                        </div>
+                        <h2 class="u-text u-text-default u-text-4">New UI design</h2>
+                        <h2 class="u-text u-text-default u-text-5">0.3 ETH</h2>
+                        <a href="https://bountyboard.bankless.community/"
+                            class="u-border-2 u-border-palette-2-base u-btn u-btn-round u-button-style u-hover-palette-2-base u-none u-radius-6 u-text-body-color u-text-hover-white u-btn-2">LEARN
+                            MORE</a>
+                    </div>
+                </div>
+                <div class="u-align-left u-container-style u-list-item u-repeater-item u-white u-list-item-3">
+                    <div class="u-container-layout u-similar-container u-container-layout-3">
+                        <div
+                            class="u-expanded-height-lg u-expanded-height-xl u-expanded-height-xs u-palette-3-base u-shape u-shape-rectangle u-shape-3">
+                        </div>
+                        <h2 class="u-text u-text-default u-text-6">Design new proposal</h2>
+                        <h2 class="u-text u-text-default u-text-7">0.3 ETH</h2>
+                        <a href="https://bountyboard.bankless.community/"
+                            class="u-border-2 u-border-palette-2-base u-btn u-btn-round u-button-style u-hover-palette-2-base u-none u-radius-6 u-text-body-color u-text-hover-white u-btn-3">LEARN
+                            MORE</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- <div class="col-md-12">
     <div class="card">
         <div class="card-header">
             <strong>{{ projects.count }} Active Projects</strong>
@@ -119,8 +168,8 @@
 
         </div>
     </div>
-</div>
-<div class="col-md-12">
+</div> -->
+<!-- <div class="col-md-12">
     <div class="card">
         <div class="card-header">
             <strong>{{ projects.count }} Active Projects</strong>
@@ -167,5 +216,5 @@
             <br>
         </div>
     </div>
-</div>
+</div> -->
 {% endblock %}

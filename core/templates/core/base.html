@@ -36,6 +36,8 @@
   <!-- Main styles for this application -->
   <link href="{% static 'core/css/estilo.css' %}" rel="stylesheet">
   <link href="{% static 'core/css/style.css' %}" rel="stylesheet">
+  <link href="{% static 'core/css/nicepage.css' %}" rel="stylesheet">
+  <link href="{% static 'core/css/Explore-Projects.css' %}" rel="stylesheet">
 
 </head>
 {% block body %}
@@ -46,7 +48,7 @@
     <button class="navbar-toggler mobile-sidebar-toggler d-lg-none mr-auto" type="button">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <img src="{% static 'core/img/logos/gui-horizontal.png' %}" alt="" class="brand-gui ml-2 d-none d-sm-block p-2">
+    <img src="{% static 'core/img/logos/dao.png' %}" alt="" class="brand-gui ml-2 d-none d-sm-block p-2">
     <button class="navbar-toggler sidebar-toggler d-md-down-none" type="button">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -74,7 +76,7 @@
         <a class="nav-link" href="#"><i class="fa fa-map-marker"></i></a>
       </li>
       {% if user.is_authenticated %}
-      <li class="text-muted">Hello, {{ user.first_name }}</li>
+      <!-- <li class="text-muted">Hello, {{ user.first_name }}</li> -->
       {% else %}
       <li class="text-muted">
         <a href="{% url 'core:login' %}">sign in</a>
@@ -83,9 +85,9 @@
       <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
           {% if user.is_authenticated %}
-          <img src="{{ logged_user.img.url }}" class="img-avatar" alt="{{ user }}">
+          {{ user }}
           {% else %}
-          <img src="{% static 'core/img/avatar/blank_profile.png' %}" class="img-avatar" alt="{{ user }}">
+          {{ user }}
           {% endif %}
         </a>
         <div class="dropdown-menu dropdown-menu-right">
@@ -133,17 +135,17 @@
             <a class="nav-link" href="{% url 'core:dashboard' %}"><i class="fa fa-tachometer-alt"></i> Dashboard</a>
           </li>
           <li class="nav-item nav-dropdown">
-            <a class="nav-link nav-dropdown-toggle" href="#"><i class="fa fa-tachometer-alt"></i> Views</a>
-            <ul class="nav-dropdown-items">
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'projects:projects'%}"><i class="fa fa-paper-plane ml-2"></i> Project's
-                  View</a>
-              </li>
-              <li class="nav-item">
+            <!-- <a class="nav-link nav-dropdown-toggle" href="#"><i class="fa fa-tachometer-alt"></i> Views</a>
+            <ul class="nav-dropdown-items"> -->
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'projects:projects'%}"><i class="fa fa-tachometer-alt"></i> Bounty
+              Board</a>
+          </li>
+          <!-- <li class="nav-item">
                 <a class="nav-link" href="{% url 'register:users'%}"><i class="fa fa-user ml-2"></i> Users Views</a>
               </li>
-            </ul>
-          </li>
+            </ul> -->
+          <!-- </li> -->
 
           <!--<li class="nav-title">-->
           <!--Theme-->
