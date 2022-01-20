@@ -28,7 +28,7 @@ class Migration(migrations.Migration):
                 ('description', models.TextField(blank=True)),
                 ('add_date', models.DateField(auto_now_add=True)),
                 ('upd_date', models.DateField(auto_now=True)),
-                ('assign', models.ManyToManyField(to=settings.AUTH_USER_MODEL)),
+                # ('assign', models.ManyToManyField(to=settings.AUTH_USER_MODEL)),
             ],
             options={
                 'ordering': ['name'],
@@ -42,7 +42,7 @@ class Migration(migrations.Migration):
                 ('status', models.CharField(choices=[('1', 'Stuck'), ('2', 'Working'), ('3', 'Done')], default=1, max_length=7)),
                 ('due', models.CharField(choices=[('1', 'On Due'), ('2', 'Overdue'), ('3', 'Done')], default=1, max_length=7)),
                 ('assign', models.ManyToManyField(to=settings.AUTH_USER_MODEL)),
-                ('project', models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, to='projects.Project')),
+                # ('project', models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, to='projects.Project')),
             ],
             options={
                 'ordering': ['project', 'task_name'],

@@ -1,10 +1,10 @@
 {% extends 'core/base.html' %}
-{% load staticfiles %}
+{% load static %}
 
 {% block breadcrumb %}
-        <li class="breadcrumb-item">Home</li>
-        <li class="breadcrumb-item">Users</li>
-        <li class="breadcrumb-item active">Friends</li>
+<li class="breadcrumb-item">Home</li>
+<li class="breadcrumb-item">Users</li>
+<li class="breadcrumb-item active">Friends</li>
 {% endblock breadcrumb%}
 
 {% block content %}
@@ -16,13 +16,15 @@
                     <div class="social-box" style="height:110%">
                         <div class="card">
                             <div class="card-body">
-                                <img src="{{ logged_user.img.url }}" class="img-avatar m-4" alt="{{ user }}" width="20%">
+                                <img src="{{ logged_user.img.url }}" class="img-avatar m-4" alt="{{ user }}"
+                                    width="20%">
                                 <br>
                                 <form action="" method="POST" enctype="multipart/form-data">
                                     {% csrf_token %}
                                     <div class="custom-file col-md-4">
                                         {{ img_form.img }}
-                                        <label class="custom-file-label btn-sm" for="validatedCustomFile">Update picture...</label>
+                                        <label class="custom-file-label btn-sm" for="validatedCustomFile">Update
+                                            picture...</label>
                                         <div>
                                             <button class="btn btn-primary btn-sm my-2" type="submit">Upload</button>
                                         </div>
@@ -53,19 +55,22 @@
                             <li><span>Company: <a href="">{{ logged_user.company }}</a></span></li>
                             <li><span>Projects:
                                     {% for project in logged_user.user.project_set.all %}
-                                        <a href="">{{ project.name }},</a>
+                                    <a href="">{{ project.name }},</a>
                                     {% endfor %}
                                 </span>
                             </li>
                         </ul>
                         <ul>
                             <li><span>Name: <a href="">{{ logged_user.user.get_full_name }}</a></span></li>
-                            <li><span>e-mail: <span class="text-blue text-lowercase">{{ logged_user.user.email }}</span></span>
+                            <li><span>e-mail: <span
+                                        class="text-blue text-lowercase">{{ logged_user.user.email }}</span></span>
                             </li>
                         </ul>
                         <ul>
-                            <li><span>Date joined: <span class="text-blue">{{ logged_user.user.date_joined }}</span></span></li>
-                            <li><span>Last login: <span class="text-blue">{{ logged_user.user.last_login }}</span></span>
+                            <li><span>Date joined: <span
+                                        class="text-blue">{{ logged_user.user.date_joined }}</span></span></li>
+                            <li><span>Last login: <span
+                                        class="text-blue">{{ logged_user.user.last_login }}</span></span>
                             </li>
                         </ul>
                     </div>

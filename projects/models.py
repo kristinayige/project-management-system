@@ -19,7 +19,7 @@ due = (
 class Project(models.Model):
     name = models.CharField(max_length=80)
     slug = models.SlugField('shortcut', blank=True)
-    assign = models.ManyToManyField(User)
+    # assign = models.ManyToManyField(User)
     efforts = models.DurationField()
     status = models.CharField(max_length=7, choices=status, default=1)
     dead_line = models.DateField()
@@ -39,7 +39,7 @@ class Project(models.Model):
 
 class Task(models.Model):
     project = models.ForeignKey(Project, on_delete=models.CASCADE)
-    assign = models.ManyToManyField(User)
+    # assign = models.ManyToManyField(User)
     task_name = models.CharField(max_length=80)
     status = models.CharField(max_length=7, choices=status, default=1)
     due = models.CharField(max_length=7, choices=due, default=1)
