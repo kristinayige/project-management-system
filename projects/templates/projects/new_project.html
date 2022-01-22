@@ -23,12 +23,11 @@
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
-                            Congratulations, your project was created!
+                            Congratulations, your bounty was created!
                         </div>
                         {% endif %}
                         {% csrf_token %}
-                        <h1>Projects</h1>
-                        <p class="text-muted">Create your projects here</p>
+                        <h1>New Bounty Task</h1>
 
                         <form action="" method="post">
                             {% csrf_token %}
@@ -80,6 +79,23 @@
                                 </div>
                             </div>
                             <div class="form-group">
+                                <label class="col-form-label">Description</label>
+                                <div class="input-group">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text"><i class="fa fa-quote-left"></i></span>
+                                    </div>
+                                    {{ form.description }}
+                                </div>
+
+                                {% if form.description.errors %}
+                                <ol>
+                                    {% for error in form.description.errors %}
+                                    <li><strong>{{ error|escape }}</strong></li>
+                                    {% endfor %}
+                                </ol>
+                                {% endif %}
+                            </div>
+                            <div class="form-group">
                                 <label class="col-form-label">Status</label>
                                 <div class="input-group">
                                     <div class="input-group-append">
@@ -96,7 +112,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-form-label">Dead Line</label>
+                                <label class="col-form-label">Due Date</label>
                                 <div class="input-group">
                                     <div class="input-group-append">
                                         <span class="input-group-text"><i class="fa fa-calendar-alt"></i></span>
@@ -113,7 +129,7 @@
                                 {% endif %}
                             </div>
                             <div class="form-group">
-                                <label class="col-form-label">Company</label>
+                                <label class="col-form-label">Guild</label>
                                 <div class="input-group">
                                     <div class="input-group-append">
                                         <span class="input-group-text"><i class="fa fa-industry"></i></span>
@@ -130,37 +146,33 @@
                                 {% endif %}
                             </div>
                             <div class="form-group">
-                                <div class="input-group">
+                                <!-- <div class="input-group">
                                     <div class="input-group-append">
                                         <span class="input-group-text"><i class="fa fa-percent"></i></span>
                                     </div>
                                     {{ form.complete_per }}
-                                </div>
-
+                                </div> -->
+                                <!-- 
                                 {% if form.complete_per.errors %}
                                 <ol>
                                     {% for error in form.complete_per.errors %}
                                     <li><strong>{{ error|escape }}</strong></li>
                                     {% endfor %}
                                 </ol>
-                                {% endif %}
-                            </div>
-                            <div class="form-group">
-                                <label class="col-form-label">Description</label>
+                                {% endif %} -->
                                 <div class="input-group">
                                     <div class="input-group-append">
-                                        <span class="input-group-text"><i class="fa fa-quote-left"></i></span>
+                                        <span class="input-group-text"><i class="fa fa-calculator"></i></span>
                                     </div>
-                                    {{ form.description }}
+                                    {{ form.efforts }}
+                                    {% if form.efforts.errors %}
+                                    <ol>
+                                        {% for error in form.efforts.errors %}
+                                        <li><strong>{{ error|escape }}</strong></li>
+                                        {% endfor %}
+                                    </ol>
+                                    {% endif %}
                                 </div>
-
-                                {% if form.description.errors %}
-                                <ol>
-                                    {% for error in form.description.errors %}
-                                    <li><strong>{{ error|escape }}</strong></li>
-                                    {% endfor %}
-                                </ol>
-                                {% endif %}
                             </div>
 
                             <div class="">

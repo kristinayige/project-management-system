@@ -80,7 +80,7 @@ class ProjectRegistrationForm(forms.ModelForm):
     def save(self, commit=True):
         Project = super(ProjectRegistrationForm, self).save(commit=False)
         Project.name = self.cleaned_data['name']
-        Project.efforts = self.cleaned_data['efforts']
+        Project.efforts = self.cleaned_data['bounty reward']
         Project.status = self.cleaned_data['status']
         Project.dead_line = self.cleaned_data['dead_line']
         Project.company = self.cleaned_data['company']
@@ -103,7 +103,7 @@ class ProjectRegistrationForm(forms.ModelForm):
         self.fields['name'].widget.attrs['class'] = 'form-control'
         self.fields['name'].widget.attrs['placeholder'] = 'Project Name'
         self.fields['efforts'].widget.attrs['class'] = 'form-control'
-        self.fields['efforts'].widget.attrs['placeholder'] = 'Efforts'
+        self.fields['efforts'].widget.attrs['placeholder'] = 'Bounty Reward'
         self.fields['status'].widget.attrs['class'] = 'form-control'
         self.fields['status'].widget.attrs['placeholder'] = 'Status'
         self.fields['dead_line'].widget.attrs['class'] = 'form-control'
