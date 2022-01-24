@@ -34,9 +34,8 @@
                             <div class="form-group">
                                 <div class="input-group">
                                     <div class="input-group-append">
-                                        <span class="input-group-text"><i class="fa fa-user"></i></span>
+                                        <span class="input-group-text"><i class="fa fa-font"></i></span>
                                     </div>
-
                                     {{ form.name }}
                                     {% if form.name.errors %}
                                     <ol>
@@ -47,26 +46,25 @@
                                     {% endif %}
                                 </div>
                             </div>
-                            <!-- <div class="form-group">
-                                <label class="col-form-label">Assign. <i>Crtl+click for multiple selection</i></label>
+                            <div class="form-group">
                                 <div class="input-group">
                                     <div class="input-group-append">
-                                        <span class="input-group-text"><i class="fa fa-users"></i></span>
+                                        <span class="input-group-text"><i class="fa fa-user-circle"></i></span>
                                     </div>
-                                    {{ form.assign }}
-                                    {% if form.assign.errors %}
+                                    {{ form.owner }}
+                                    {% if form.owner.errors %}
                                     <ol>
-                                        {% for error in form.assign.errors %}
+                                        {% for error in form.owner.errors %}
                                         <li><strong>{{ error|escape }}</strong></li>
                                         {% endfor %}
                                     </ol>
                                     {% endif %}
                                 </div>
-                            </div> -->
+                            </div>
                             <div class="form-group">
                                 <div class="input-group">
                                     <div class="input-group-append">
-                                        <span class="input-group-text"><i class="fa fa-calculator"></i></span>
+                                        <span class="input-group-text"><i class="fa fa-money"></i></span>
                                     </div>
                                     {{ form.efforts }}
                                     {% if form.efforts.errors %}
@@ -146,41 +144,14 @@
                                 {% endif %}
                             </div>
                             <div class="form-group">
-                                <!-- <div class="input-group">
-                                    <div class="input-group-append">
-                                        <span class="input-group-text"><i class="fa fa-percent"></i></span>
-                                    </div>
-                                    {{ form.complete_per }}
-                                </div> -->
-                                <!-- 
-                                {% if form.complete_per.errors %}
-                                <ol>
-                                    {% for error in form.complete_per.errors %}
-                                    <li><strong>{{ error|escape }}</strong></li>
-                                    {% endfor %}
-                                </ol>
-                                {% endif %} -->
-                                <div class="input-group">
-                                    <div class="input-group-append">
-                                        <span class="input-group-text"><i class="fa fa-calculator"></i></span>
-                                    </div>
-                                    {{ form.efforts }}
-                                    {% if form.efforts.errors %}
-                                    <ol>
-                                        {% for error in form.efforts.errors %}
-                                        <li><strong>{{ error|escape }}</strong></li>
-                                        {% endfor %}
-                                    </ol>
-                                    {% endif %}
-                                </div>
-                            </div>
 
-                            <div class="">
-                                <button type="submit" class="btn btn-sm btn-success"><i class="fa fa-dot-circle-o"></i>
-                                    Submit</button>
-                                <button type="reset" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i>
-                                    Reset</button>
-                            </div>
+                                <div class="">
+                                    <button type="submit" class="btn btn-sm btn-success"><i
+                                            class="fa fa-dot-circle-o"></i>
+                                        Submit</button>
+                                    <button type="reset" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i>
+                                        Reset</button>
+                                </div>
                         </form>
                         {{ form.errors }}
                     </div>

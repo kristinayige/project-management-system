@@ -17,14 +17,15 @@ due = (
 
 # Create your models here.
 class Project(models.Model):
+    declared = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=80)
+    company = models.CharField(max_length=80)
     slug = models.SlugField('shortcut', blank=True)
-    # assign = models.ManyToManyField(User)
-    efforts = models.DurationField()
+    efforts = models.FloatField()
     status = models.CharField(max_length=7, choices=status, default=1)
     dead_line = models.DateField()
-    company = models.ForeignKey('register.Company', on_delete=models.CASCADE)
-    complete_per = models.FloatField(max_length=2, validators = [MinValueValidator(0), MaxValueValidator(100)])
+    owner = models.CharField(max_length=80, default="")
+    # claimed = models.ManyToManyField(User)
     description = models.TextField(blank=True)
 
     add_date = models.DateField(auto_now_add=True)
@@ -39,7 +40,6 @@ class Project(models.Model):
 
 class Task(models.Model):
     project = models.ForeignKey(Project, on_delete=models.CASCADE)
-    # assign = models.ManyToManyField(User)
     task_name = models.CharField(max_length=80)
     status = models.CharField(max_length=7, choices=status, default=1)
     due = models.CharField(max_length=7, choices=due, default=1)

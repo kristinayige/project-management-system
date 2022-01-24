@@ -2,6 +2,7 @@
 {% load static %}
 <link href="{% static 'core/css/nicepage.css' %}" rel="stylesheet">
 <link href="{% static 'core/css/Explore-Projects.css' %}" rel="stylesheet">
+<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
 
 
 {% block breadcrumb %}
@@ -11,74 +12,50 @@
 {% endblock breadcrumb%}
 {% block content %}
 
-<section class="u-align-left u-clearfix u-grey-5 u-section-1" id="carousel_7c2a">
-    <div class="u-clearfix u-sheet u-sheet-1">
-        <h2 class="u-custom-font u-font-montserrat u-text u-text-1">YourDAO Bounty Board</h2>
-        <a href="{% url 'projects:new-project'%}"
-            class="u-border-none u-btn u-btn-round u-button-style u-custom-color-1 u-hover-custom-color-2 u-radius-50 u-text-hover-white u-btn-0"><span
-                class="u-file-icon u-icon u-text-white u-icon-1"><img src="{% static 'core/img/1.png' %}"
-                    alt=""></span>&nbsp;Add
-            New&nbsp;
-        </a>
-        <div class="u-expanded-width-xs u-list u-list-1">
-            <div class="u-repeater u-repeater-1">
-                <div
-                    class="u-align-left u-container-style u-custom-item u-list-item u-repeater-item u-white u-list-item-1">
-                    <div class="u-container-layout u-similar-container u-container-layout-1">
-                        <div
-                            class="u-expanded-height-lg u-expanded-height-xl u-expanded-height-xs u-custom-color-1 u-shape u-shape-rectangle u-shape-1">
-                        </div>
-                        <h2 class="u-text u-text-default u-text-2">Create bounty board for DAO++</h2>
-                        <h2 class="u-text u-text-default u-text-3">0.5 ETH</h2>
-                        <a href="https://bountyboard.bankless.community/"
-                            class="u-border-2 u-border-palette-2-base u-btn u-btn-round u-button-style u-hover-custom-color-1 u-none u-radius-6 u-text-body-color u-text-hover-white u-btn-1">LEARN
-                            MORE</a>
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<body>
+    <section class="ftco-section">
+        <div class="container">
+            <div class="loc-bounty">
+                <!-- <div class="col-md-6 text-center mb-4"> -->
+                <h2 class="heading-section">Bounty Board</h2>
+                <!-- </div> -->
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="table-wrap">
+                        <table class="table myaccordion table-hover" id="accordion">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Reward</th>
+                                    <th>Category</th>
+                                    <th>Project Requester</th>
+                                    <th>&nbsp;</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for project in projects %}
+                                <tr>
+                                    <td>{{ project.name }}</td>
+                                    <td>{{ project.efforts }} ETH</td>
+                                    <td>{{ project.company }}</td>
+                                    <td>{{ project.owner }}</td>
+                                    <td>
+                                        <button class="claim-font claim-button "> Claim it </>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
                     </div>
                 </div>
-                <div class="u-align-left u-container-style u-list-item u-repeater-item u-white u-list-item-2">
-                    <div class="u-container-layout u-similar-container u-container-layout-2">
-                        <div
-                            class="u-expanded-height-lg u-expanded-height-xl u-expanded-height-xs u-custom-color-1 u-shape u-shape-rectangle u-shape-2">
-                        </div>
-                        <h2 class="u-text u-text-default u-text-4">New UI design</h2>
-                        <h2 class="u-text u-text-default u-text-5">0.3 ETH</h2>
-                        <a href="https://bountyboard.bankless.community/"
-                            class="u-border-2 u-border-palette-2-base u-btn u-btn-round u-button-style u-hover-custom-color-1 u-none u-radius-6 u-text-body-color u-text-hover-white u-btn-2">LEARN
-                            MORE</a>
-                    </div>
-                </div>
-                <div class="u-align-left u-container-style u-list-item u-repeater-item u-white u-list-item-3">
-                    <div class="u-container-layout u-similar-container u-container-layout-3">
-                        <div
-                            class="u-expanded-height-lg u-expanded-height-xl u-expanded-height-xs u-custom-color-1 u-shape u-shape-rectangle u-shape-3">
-                        </div>
-                        <h2 class="u-text u-text-default u-text-6">Design new proposal</h2>
-                        <h2 class="u-text u-text-default u-text-7">0.3 ETH</h2>
-                        <a href="https://bountyboard.bankless.community/"
-                            class="u-border-2 u-border-palette-2-base u-btn u-btn-round u-button-style u-hover-custom-color-1 u-none u-radius-6 u-text-body-color u-text-hover-white u-btn-3">LEARN
-                            MORE</a>
-                    </div>
-                </div>
-                <!-- {% for project in projects %}
-                <div class="u-align-left u-container-style u-list-item u-repeater-item u-white u-list-item-3">
-                    <div class="u-container-layout u-similar-container u-container-layout-3">
-                        <div
-                            class="u-expanded-height-lg u-expanded-height-xl u-expanded-height-xs u-custom-color-1 u-shape u-shape-rectangle u-shape-3">
-                        </div>
-                        <h2 class="u-text u-text-default u-text-6">{{ project.name }}</h2>
-                        <h2 class="u-text u-text-default u-text-7">{{ project.efforts }}</h2>
-                        <a href="https://bountyboard.bankless.community/"
-                            class="u-border-2 u-border-palette-2-base u-btn u-btn-round u-button-style u-hover-custom-color-1 u-none u-radius-6 u-text-body-color u-text-hover-white u-btn-3">LEARN
-                            MORE</a>
-                    </div>
-                </div>
-                {% endfor %} -->
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<!-- <div class="col-md-12">
+    <!-- <div class="col-md-12">
     <div class="card">
         <div class="card-header">
             <strong>{{ projects.count }} Active Projects</strong>
@@ -190,7 +167,7 @@
         </div>
     </div>
 </div> -->
-<!-- <div class="col-md-12">
+    <!-- <div class="col-md-12">
     <div class="card">
         <div class="card-header">
             <strong>{{ projects.count }} Active Projects</strong>
@@ -238,4 +215,4 @@
         </div>
     </div>
 </div> -->
-{% endblock %}
+    {% endblock %}

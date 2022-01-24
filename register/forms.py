@@ -6,7 +6,7 @@ from django.contrib.auth.forms import UserCreationForm
 
 class RegistrationForm(UserCreationForm):
     email = forms.EmailField(label='E-mail', required=True)
-    company = forms.ModelChoiceField(queryset=Comp.objects.all())
+    # company = forms.ModelChoiceField(queryset=Comp.objects.all())
 
     class Meta:
         model = User
@@ -15,7 +15,7 @@ class RegistrationForm(UserCreationForm):
             'first_name',
             'last_name',
             'email',
-            'company',
+            # 'company',
             'password1',
             'password2',
         }
@@ -23,7 +23,7 @@ class RegistrationForm(UserCreationForm):
         labels = {
             'first_name': 'Name',
             'last_name': 'Last Name',
-            'company': 'Company',
+            # 'company': 'Company',
         }
 
     def save(self, commit=True):
@@ -32,11 +32,12 @@ class RegistrationForm(UserCreationForm):
         user.first_name = self.cleaned_data['first_name']
         user.last_name = self.cleaned_data['last_name']
         user.email = self.cleaned_data['email']
-        company = self.cleaned_data['company']
+        # company = self.cleaned_data['company']
 
         if commit:
             user.save()
-            user_profile = UserProfile.objects.create(user=user, company=Comp.objects.get(name=company))
+            # user_profile = UserProfile.objects.create(user=user, company=Comp.objects.get(name=company))
+            user_profile = UserProfile.objects.create(user=user)
             user_profile.save()
 
         return user
@@ -55,7 +56,7 @@ class RegistrationForm(UserCreationForm):
         self.fields['password1'].widget.attrs['placeholder'] = 'Password'
         self.fields['password2'].widget.attrs['class'] = 'form-control'
         self.fields['password2'].widget.attrs['placeholder'] = 'Retype Password'
-        self.fields['company'].widget.attrs['class'] = 'form-control'
+        # self.fields['company'].widget.attrs['class'] = 'form-control'
 
 
 class CompanyRegistrationForm(forms.Form):

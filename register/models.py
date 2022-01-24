@@ -20,7 +20,7 @@ class Company(models.Model):
 
 class UserProfile(models.Model):
     user    = models.ForeignKey(User, on_delete=models.CASCADE)
-    company = models.ForeignKey(Company, on_delete=models.CASCADE)
+    # company = models.ForeignKey(Company, on_delete=models.CASCADE)
     project = models.ManyToManyField(Project, blank=True)
     friends = models.ManyToManyField('self', blank=True)
     img    = models.ImageField(upload_to='core/avatar', blank=True, default='core/avatar/blank_profile.png')

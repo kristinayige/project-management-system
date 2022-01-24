@@ -9,7 +9,7 @@ class CompanyAdmin(admin.ModelAdmin):
     search_fields = ['name', 'social_name','city']
 
 class UserProfileAdmin(admin.ModelAdmin):
-    list_display = ['user', 'company',]
+    list_display = ['user']
 
 class InviteAdmin(admin.ModelAdmin):
     list_display = ['inviter', 'invited',]
