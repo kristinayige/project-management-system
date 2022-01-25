@@ -39,10 +39,12 @@ class Project(models.Model):
 
 
 class Task(models.Model):
-    project = models.ForeignKey(Project, on_delete=models.CASCADE)
+    project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name='task_in_projects')
     task_name = models.CharField(max_length=80)
-    status = models.CharField(max_length=7, choices=status, default=1)
-    due = models.CharField(max_length=7, choices=due, default=1)
+    reward = models.FloatField()
+    description = models.TextField(blank=True)
+    dead_line = models.DateField()
+    status = models.CharField(max_length=80)
 
     class Meta:
         ordering = ['project', 'task_name']

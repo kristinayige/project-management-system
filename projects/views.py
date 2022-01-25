@@ -9,14 +9,13 @@ from django.contrib.auth.models import User
 # Create your views here.
 def projects(request):
     projects = Project.objects.all()
-    # avg_projects = Project.objects.all().aggregate(Avg('complete_per'))['complete_per__avg']
     tasks = Task.objects.all()
-    overdue_tasks = tasks.filter(due='2')
+    open_tasks = tasks.filter(status='Created')
+    proj_dict = {}
     context = {
-        # 'avg_projects' : avg_projects,
         'projects' : projects,
         'tasks' : tasks,
-        'overdue_tasks' : overdue_tasks,
+        'open_tasks' : open_tasks,
     }
     return render(request, 'projects/projects.html', context)
 
@@ -25,7 +24,9 @@ def newTask(request):
         form = TaskRegistrationForm(request.POST)
         context = {'form': form}
         if form.is_valid():
-            form.save()
+            instance = form.save(commit = False)
+            instance.status = "Created"
+            instance.save()
             created = True
             context = {
                 'created': created,
@@ -45,14 +46,10 @@ def newProject(request):
     if request.method == 'POST':
         form = ProjectRegistrationForm(request.POST)
         context = {'form': form}
-        # for field in form:
-        #     print(field)
-        #     print(field.value())
         if form.is_valid():
             instance = form.save(commit = False)
-            # if request.user.is_authenticated:
-            print("here")
             instance.declared = User.objects.get(pk=request.user.id)
+            instance.status = "Created"
             instance.save()
             created = True
             form = ProjectRegistrationForm()

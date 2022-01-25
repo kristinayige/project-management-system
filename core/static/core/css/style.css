@@ -104,7 +104,7 @@ body {
 
 [tabindex="-1"]:focus {
   outline: 0 !important; }
-
+  
 hr {
   box-sizing: content-box;
   height: 0;
@@ -10483,7 +10483,7 @@ base-chart.chart {
       flex-direction: column;
   padding: 0;
   color: #fff;
-  background: #F2F2F2; }
+  background: #29363d; }
   .sidebar .sidebar-close {
     position: absolute;
     right: 0;

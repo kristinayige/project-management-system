@@ -5,38 +5,34 @@ from .models import Project
 from register.models import Company
 from django.contrib.auth.models import User
 
-status = (
-    ('1', 'Stuck'),
-    ('2', 'Working'),
-    ('3', 'Done'),
-)
-
-due = (
-    ('1', 'On Due'),
-    ('2', 'Overdue'),
-    ('3', 'Done'),
-)
-
 
 class TaskRegistrationForm(forms.ModelForm):
     project = forms.ModelChoiceField(queryset=Project.objects.all())
+    # TODO: can explore that for assigning projects
     # assign = forms.ModelMultipleChoiceField(queryset=User.objects.all())
     task_name = forms.CharField(max_length=80)
-    status = forms.ChoiceField(choices=status)
-    due = forms.ChoiceField(choices=due)
+    reward = forms.FloatField()
+    dead_line = forms.DateField()
+    description = forms.CharField(widget=forms.Textarea)
 
     class Meta:
         model = Task
-        fields = '__all__'
+        fields = [
+            "project",
+            "task_name",
+            "reward",
+            "dead_line",
+            "description",
+        ]
 
 
     def save(self, commit=True):
         task = super(TaskRegistrationForm, self).save(commit=False)
         task.project = self.cleaned_data['project']
         task.task_name = self.cleaned_data['task_name']
-        task.status = self.cleaned_data['status']
-        task.due = self.cleaned_data['due']
-        task.save()
+        task.reward = self.cleaned_data['reward']
+        task.dead_line = self.cleaned_data['dead_line']
+        task.description = self.cleaned_data['description']
 
         if commit:
             task.save()
@@ -50,25 +46,30 @@ class TaskRegistrationForm(forms.ModelForm):
         self.fields['project'].widget.attrs['placeholder'] = 'Social Name'
         self.fields['task_name'].widget.attrs['class'] = 'form-control'
         self.fields['task_name'].widget.attrs['placeholder'] = 'Name'
-        self.fields['status'].widget.attrs['class'] = 'form-control'
-        self.fields['status'].widget.attrs['placeholder'] = 'Email'
-        self.fields['due'].widget.attrs['class'] = 'form-control'
-        self.fields['due'].widget.attrs['placeholder'] = 'City'
+        self.fields['reward'].widget.attrs['class'] = 'form-control'
+        self.fields['reward'].widget.attrs['placeholder'] = 'Token reward for the task'
+        self.fields['dead_line'].widget.attrs['class'] = 'form-control'
+        self.fields['dead_line'].widget.attrs['placeholder'] = 'Dead Line, type a date'
+        self.fields['description'].widget.attrs['class'] = 'form-control'
+        self.fields['description'].widget.attrs['placeholder'] = 'Type here the project description...'
 
 
 class ProjectRegistrationForm(forms.ModelForm):
     name = forms.CharField(max_length=80)
     owner = forms.CharField(max_length=80)
     efforts = forms.FloatField()
-    status = forms.ChoiceField(choices=status)
     dead_line = forms.DateField()
-    GILDS =(
-        ("Education", "Education"),
-        ("Developments", "Developments"),
-        ("Governance", "Governance"),
-        ("Legal", "Legal"),
-    )
-    company = forms.ChoiceField(choices=GILDS)
+
+    # GILDS =(
+    #     ("Education", "Education"),
+    #     ("Developments", "Developments"),
+    #     ("Governance", "Governance"),
+    #     ("Legal", "Legal"),
+    # )
+    # Company is actually the GILDS
+    # company = forms.ChoiceField(choices=GILDS)
+
+    company = forms.CharField(max_length=80)
     description = forms.CharField(widget=forms.Textarea)
 
     class Meta:
@@ -76,7 +77,6 @@ class ProjectRegistrationForm(forms.ModelForm):
         fields = [
             "name",
             "efforts",
-            "status",
             "dead_line",
             "owner",
             "description",
@@ -89,7 +89,6 @@ class ProjectRegistrationForm(forms.ModelForm):
         Project.owner = self.cleaned_data['owner']
         Project.description = self.cleaned_data['description']
         Project.efforts = self.cleaned_data['efforts']
-        Project.status = self.cleaned_data['status']
         Project.dead_line = self.cleaned_data['dead_line']
         Project.company = self.cleaned_data['company']
         Project.slug = slugify(str(self.cleaned_data['name']))
@@ -108,8 +107,6 @@ class ProjectRegistrationForm(forms.ModelForm):
         self.fields['owner'].widget.attrs['placeholder'] = 'Discord Username'
         self.fields['efforts'].widget.attrs['class'] = 'form-control'
         self.fields['efforts'].widget.attrs['placeholder'] = 'Bounty Reward'
-        self.fields['status'].widget.attrs['class'] = 'form-control'
-        self.fields['status'].widget.attrs['placeholder'] = 'Status'
         self.fields['dead_line'].widget.attrs['class'] = 'form-control'
         self.fields['dead_line'].widget.attrs['placeholder'] = 'Dead Line, type a date'
         self.fields['company'].widget.attrs['class'] = 'form-control'

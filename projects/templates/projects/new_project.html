@@ -94,22 +94,6 @@
                                 {% endif %}
                             </div>
                             <div class="form-group">
-                                <label class="col-form-label">Status</label>
-                                <div class="input-group">
-                                    <div class="input-group-append">
-                                        <span class="input-group-text"><i class="fa fa-circle"></i></span>
-                                    </div>
-                                    {{ form.status }}
-                                    {% if form.status.errors %}
-                                    <ol>
-                                        {% for error in form.status.errors %}
-                                        <li><strong>{{ error|escape }}</strong></li>
-                                        {% endfor %}
-                                    </ol>
-                                    {% endif %}
-                                </div>
-                            </div>
-                            <div class="form-group">
                                 <label class="col-form-label">Due Date</label>
                                 <div class="input-group">
                                     <div class="input-group-append">
