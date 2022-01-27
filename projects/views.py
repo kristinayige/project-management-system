@@ -5,6 +5,7 @@ from projects.models import Task
 from projects.forms import TaskRegistrationForm
 from projects.forms import ProjectRegistrationForm
 from django.contrib.auth.models import User
+from django.shortcuts import redirect
 
 # Create your views here.
 def projects(request):
@@ -18,6 +19,12 @@ def projects(request):
         'open_tasks' : open_tasks,
     }
     return render(request, 'projects/projects.html', context)
+
+def claimTask(request, task_id):
+    myUser = User.objects.get(pk=request.user.id)
+    myTask = Task.objects.get(pk = task_id)
+    myTask.claimed.add(myUser) #add the user to the task
+    return redirect('projects:projects') #TODO: interactive message indicating task is claimed
 
 def newTask(request):
     if request.method == 'POST':

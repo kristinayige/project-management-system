@@ -74,9 +74,11 @@
                                                         </div>
                                                         {% if task.status == "Created"%}
                                                         <div class="d-flex align-items-center">
-                                                            <button class="claim-font claim-button">
-                                                                Claim it
-                                                            </button>
+                                                            <a href="{% url 'projects:claim-task' task_id=task.id %}">
+                                                                <button class="claim-font claim-button">
+                                                                    Join
+                                                                </button>
+                                                            </a>
                                                         </div>
                                                         {% endif %}
                                                     </div>

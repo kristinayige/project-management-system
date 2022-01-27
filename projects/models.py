@@ -41,6 +41,7 @@ class Project(models.Model):
 class Task(models.Model):
     project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name='task_in_projects')
     task_name = models.CharField(max_length=80)
+    claimed = models.ManyToManyField(User) #people who claimed the task
     reward = models.FloatField()
     description = models.TextField(blank=True)
     dead_line = models.DateField()
