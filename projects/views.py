@@ -6,9 +6,22 @@ from projects.forms import TaskRegistrationForm
 from projects.forms import ProjectRegistrationForm
 from django.contrib.auth.models import User
 from django.shortcuts import redirect
+from django.contrib.auth.decorators import login_required
+from django.http import JsonResponse
 
 # Create your views here.
 def projects(request):
+    print("HERE")
+    print(request.POST.get('task_id'))
+    if request.method == 'POST':
+        print("POST")
+        print(request.is_ajax())
+        task_id = request.POST.get('task_id')
+        myUser = User.objects.get(pk=request.user.id)
+        myTask = Task.objects.get(pk = task_id)
+        myTask.claimed.add(myUser) #add the user to the task
+        return JsonResponse({'status': 'ok'})
+
     projects = Project.objects.all()
     tasks = Task.objects.all()
     open_tasks = tasks.filter(status='Created')
@@ -19,12 +32,6 @@ def projects(request):
         'open_tasks' : open_tasks,
     }
     return render(request, 'projects/projects.html', context)
-
-def claimTask(request, task_id):
-    myUser = User.objects.get(pk=request.user.id)
-    myTask = Task.objects.get(pk = task_id)
-    myTask.claimed.add(myUser) #add the user to the task
-    return redirect('projects:projects') #TODO: interactive message indicating task is claimed
 
 def newTask(request):
     if request.method == 'POST':

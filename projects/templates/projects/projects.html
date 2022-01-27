@@ -45,13 +45,13 @@
                                     <td>{{ project.owner }}</td>
                                     <td>
                                         <button class="claim-font claim-button" data-toggle="collapse"
-                                            data-target="#{{ project.id }}" aria-expanded="false">
+                                            data-target="#project_{{ project.id }}" aria-expanded="false">
                                             <!-- aria-expanded="false" -->
                                             Explore
                                         </button>
                                     </td>
                                 </tr>
-                                <tr id="{{ project.id }}" class="collapse">
+                                <tr id="project_{{ project.id }}" class="collapse">
                                     <td colspan="5">
                                         <div class="row">
                                             {% for task in tasks %}
@@ -74,11 +74,15 @@
                                                         </div>
                                                         {% if task.status == "Created"%}
                                                         <div class="d-flex align-items-center">
-                                                            <a href="{% url 'projects:claim-task' task_id=task.id %}">
-                                                                <button class="claim-font claim-button">
+                                                            <form action="" method="POST" class='join-form'
+                                                                id='{{task.id}}'>
+                                                                {% csrf_token %}
+                                                                <input type="hidden" name="task_id" value={{task.id}}>
+                                                                <button class=" claim-font claim-button"
+                                                                    value={{task.id}}>
                                                                     Join
                                                                 </button>
-                                                            </a>
+                                                            </form>
                                                         </div>
                                                         {% endif %}
                                                     </div>
@@ -99,3 +103,40 @@
     </section>
 </body>
 {% endblock %}
+
+{% block scripts %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('.join-form').on('submit', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            const url = $(this).attr('action');
+            console.log("here we are");
+            const task_id = $(this).attr('id');
+            $.ajax({
+                type: 'POST',
+                dataType: "json",
+                headers: { 'X-CSRFToken': csrftoken },
+                url: "/projects/",
+                data: {
+                    csrfmiddlewaretoken: '{{ csrf_token }}',
+                    task_id: task_id,
+                },
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest'
+                },
+                success: function (response) {
+                    alert(data);
+                    console.log("here we are");
+                },
+                error: function (response) {
+                    console.log('error', response);
+                    alert("shit")
+                }
+            })
+            return false;
+        });
+    });
+</script>
+{% endblock scripts %}
