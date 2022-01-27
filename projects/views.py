@@ -13,6 +13,7 @@ from django.http import JsonResponse
 def projects(request):
     print("HERE")
     print(request.POST.get('task_id'))
+    print(request.is_ajax())
     if request.method == 'POST':
         print("POST")
         print(request.is_ajax())

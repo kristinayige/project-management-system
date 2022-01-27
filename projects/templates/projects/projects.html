@@ -74,12 +74,12 @@
                                                         </div>
                                                         {% if task.status == "Created"%}
                                                         <div class="d-flex align-items-center">
-                                                            <form action="" method="POST" class='join-form'
-                                                                id='{{task.id}}'>
+                                                            <form action="{% url 'projects:projects' %}" method="POST"
+                                                                class='join-form' id='{{task.id}}'>
                                                                 {% csrf_token %}
                                                                 <input type="hidden" name="task_id" value={{task.id}}>
                                                                 <button class=" claim-font claim-button"
-                                                                    value={{task.id}}>
+                                                                    value={{task.id}} id="join-btn-{{task.id}}">
                                                                     Join
                                                                 </button>
                                                             </form>
@@ -105,7 +105,7 @@
 {% endblock %}
 
 {% block scripts %}
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
     $(document).ready(function () {
         $('.join-form').on('submit', function (e) {
@@ -117,22 +117,18 @@
             $.ajax({
                 type: 'POST',
                 dataType: "json",
-                headers: { 'X-CSRFToken': csrftoken },
-                url: "/projects/",
+                url: url,
                 data: {
                     csrfmiddlewaretoken: '{{ csrf_token }}',
                     task_id: task_id,
                 },
-                headers: {
-                    'X-Requested-With': 'XMLHttpRequest'
-                },
                 success: function (response) {
-                    alert(data);
-                    console.log("here we are");
+                    console.log("success!")
+                    alert("Congrats! You have joined the task")
+                    $(`#join-btn-${task_id}`).text('Joined')
                 },
                 error: function (response) {
                     console.log('error', response);
-                    alert("shit")
                 }
             })
             return false;
