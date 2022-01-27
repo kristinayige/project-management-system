@@ -74,6 +74,11 @@
                                                         </div>
                                                         {% if task.status == "Created"%}
                                                         <div class="d-flex align-items-center">
+                                                            {% if task.id in my_tasks %}
+                                                            <button class="claim-font claim-button">
+                                                                Joined
+                                                            </button>
+                                                            {% else %}
                                                             <form action="{% url 'projects:projects' %}" method="POST"
                                                                 class='join-form' id='{{task.id}}'>
                                                                 {% csrf_token %}
@@ -83,6 +88,7 @@
                                                                     Join
                                                                 </button>
                                                             </form>
+                                                            {% endif %}
                                                         </div>
                                                         {% endif %}
                                                     </div>

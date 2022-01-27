@@ -22,16 +22,18 @@ def projects(request):
         myTask = Task.objects.get(pk = task_id)
         myTask.claimed.add(myUser) #add the user to the task
         return JsonResponse({'status': 'ok'})
-
     projects = Project.objects.all()
     tasks = Task.objects.all()
     open_tasks = tasks.filter(status='Created')
+    my_tasks = tasks.filter(claimed__in = [request.user.id]).values_list('id', flat = True)
     proj_dict = {}
     context = {
         'projects' : projects,
         'tasks' : tasks,
         'open_tasks' : open_tasks,
+        'my_tasks': my_tasks,
     }
+    print(my_tasks)
     return render(request, 'projects/projects.html', context)
 
 def newTask(request):
