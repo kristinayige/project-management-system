@@ -36,7 +36,7 @@
                                     {% if form.username.errors %}
                                     <ol>
                                         {% for error in form.username.errors %}
-                                        <li><strong>{{ error|escape }}</strong></li>
+                                        <li class="form-error"><strong>{{ error|escape }}</strong></li>
                                         {% endfor %}
                                     </ol>
                                     {% endif %}
@@ -51,7 +51,7 @@
                                     {% if form.first_name.errors %}
                                     <ol>
                                         {% for error in form.first_name.errors %}
-                                        <li><strong>{{ error|escape }}</strong></li>
+                                        <li class="form-error"><strong>{{ error|escape }}</strong></li>
                                         {% endfor %}
                                     </ol>
                                     {% endif %}
@@ -66,7 +66,7 @@
                                     {% if form.last_name.errors %}
                                     <ol>
                                         {% for error in form.last_name.errors %}
-                                        <li><strong>{{ error|escape }}</strong></li>
+                                        <li class="form-error"><strong>{{ error|escape }}</strong></li>
                                         {% endfor %}
                                     </ol>
                                     {% endif %}
@@ -81,7 +81,7 @@
                                     {% if form.email.errors %}
                                     <ol>
                                         {% for error in form.email.errors %}
-                                        <li><strong>{{ error|escape }}</strong></li>
+                                        <li class="form-error"><strong>{{ error|escape }}</strong></li>
                                         {% endfor %}
                                     </ol>
                                     {% endif %}
@@ -96,7 +96,7 @@
                                     {% if form.password1.errors %}
                                     <ol>
                                         {% for error in form.password1.errors %}
-                                        <li><strong>{{ error|escape }}</strong></li>
+                                        <li class="form-error"><strong>{{ error|escape }}</strong></li>
                                         {% endfor %}
                                     </ol>
                                     {% endif %}
@@ -113,7 +113,7 @@
                                 {% if form.password2.errors %}
                                 <ol>
                                     {% for error in form.password2.errors %}
-                                    <li><strong>{{ error|escape }}</strong></li>
+                                    <li class="form-error"><strong>{{ error|escape }}</strong></li>
                                     {% endfor %}
                                 </ol>
                                 {% endif %}
@@ -127,7 +127,7 @@
                                     {% if form.company.errors %}
                                     <ol>
                                         {% for error in form.company.errors %}
-                                        <li><strong>{{ error|escape }}</strong></li>
+                                        <li class="form-error"><strong>{{ error|escape }}</strong></li>
                                         {% endfor %}
                                     </ol>
                                     {% endif %}
@@ -141,7 +141,6 @@
                                     Reset</button>
                             </div>
                         </form>
-                        {{ form.errors }}
                     </div>
                 </div>
             </div>
