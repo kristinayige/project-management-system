@@ -45,7 +45,7 @@ INSTALLED_APPS = [
     'projects',
 
     # third apps
-    'multiselectfield',
+    # 'multiselectfield',
     'storages',
 ]
 
